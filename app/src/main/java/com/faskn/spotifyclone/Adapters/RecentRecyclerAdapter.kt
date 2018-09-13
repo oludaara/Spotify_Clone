@@ -8,9 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.faskn.spotifyclone.Data.RecentPlayedDTO
 import com.faskn.spotifyclone.R
+import com.faskn.spotifyclone.R.id.imgForYou
 import kotlinx.android.synthetic.main.container_recently_played.view.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class RecentRecyclerAdapter(val recentPlayedList : ArrayList<RecentPlayedDTO>) : RecyclerView.Adapter<RecentRecyclerAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentRecyclerAdapter.ViewHolder {
@@ -24,7 +27,11 @@ class RecentRecyclerAdapter(val recentPlayedList : ArrayList<RecentPlayedDTO>) :
 
     override fun onBindViewHolder(holder: RecentRecyclerAdapter.ViewHolder, position: Int) {
         val imgAlbumCover = holder.itemView.findViewById<ImageView>(R.id.imgAlbumCover)
-        Glide.with(holder.itemView).load(recentPlayedList[position].imgURL).into(imgAlbumCover)
+        val imgForYou = holder.itemView.findViewById<ImageView>(R.id.imgForYou)
+        Glide.with(holder.itemView)
+                .apply { RequestOptions().override(120, 120).fitCenter() }
+                .load(recentPlayedList[position].imgURL)
+                .into(imgAlbumCover)
         holder.txtAlbumTitle?.text=recentPlayedList[position].title
     }
 

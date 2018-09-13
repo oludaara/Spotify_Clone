@@ -6,15 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.faskn.spotifyclone.Adapters.AdviceForYouAdapter
 import com.faskn.spotifyclone.Adapters.RecentRecyclerAdapter
 import com.faskn.spotifyclone.Adapters.MyPagerAdapter
+import com.faskn.spotifyclone.Data.AdviceForYouDTO
 import com.faskn.spotifyclone.Data.RecentPlayedDTO
 
 import com.faskn.spotifyclone.R
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
@@ -23,21 +29,45 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
 
 
-        var view : View = inflater.inflate(R.layout.fragment_home, container, false)
-        var recycler = view.findViewById<RecyclerView>(R.id.recently_played_recycler)
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
+        val recycler = view.findViewById<RecyclerView>(R.id.recently_played_recycler)
+        val imgForYou = view.findViewById<ImageView>(R.id.imgForYou)
         recycler?.layoutManager = LinearLayoutManager(view.context, LinearLayout.HORIZONTAL,false)
 
-        val albums = ArrayList<RecentPlayedDTO>()
-        albums.add(RecentPlayedDTO("https://www.shareicon.net/download/2016/09/01/822725_user_512x512.png","Senin için"))
-        albums.add(RecentPlayedDTO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNb6KAhak0TUASceMFbSCwoUhFcPCla__6nw2QFHhiIRPeen6UEA","Güldürü"))
-        albums.add(RecentPlayedDTO("https://www.walldevil.com/wallpapers/w01/547971-brz-cars-fr-s-gt-86-scion-scion-fr-s-subaru-brz-toyota-86.jpg","Araba"))
-        albums.add(RecentPlayedDTO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRRe1ZmUqQCHo_VzWRK0ALyLxAShAOLF0UFflxFEQNAFPnkN7V","Fitness"))
-        albums.add(RecentPlayedDTO("https://images.wallpaperscraft.com/image/spices_seasonings_red_pepper_black_pepper_pepper_star_anise_onion_ginger_garlic_walnuts_bay_leaf_78738_300x168.jpg","Yemek"))
-        albums.add(RecentPlayedDTO("http://s1.1zoom.me/b5050/934/DOTA_2_Magnus_Monsters_444888_1366x768.jpg","Oyun"))
-        albums.add(RecentPlayedDTO("https://stoketravel.com/wp-content/uploads/2016/12/solo-travel-photo-.jpg","Seyahat"))
+        val dailyRecycler = view.findViewById<RecyclerView>(R.id.daily_mixes_recycler)
+        dailyRecycler?.layoutManager = LinearLayoutManager(view.context, LinearLayout.HORIZONTAL, false)
 
-        var adapter = RecentRecyclerAdapter(albums)
+        val adviceRecyler = view.findViewById<RecyclerView>(R.id.advice_for_you_recycler)
+        adviceRecyler?.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
+
+
+        val albums = ArrayList<RecentPlayedDTO>()
+        albums.add(RecentPlayedDTO("https://i.pinimg.com/236x/9d/e7/7a/9de77a1ffc2cd752887d04f1dffb1650.jpg", "Feenixpawl - Love me for life"))
+        albums.add(RecentPlayedDTO("https://lineup-images.scdn.co/time-capsule_DEFAULT-en.jpg", "Zaman Kapsülün"))
+        albums.add(RecentPlayedDTO("https://spotify.i.lithium.com/t5/image/serverpage/image-id/60013i7710A8EFA4ECD096/image-size/large?v=1.0&px=999", "Haftalık Keşif"))
+        albums.add(RecentPlayedDTO("https://i.scdn.co/image/913c7ccb86562d204b191ae6eed52c2853b90094", "In My Mind"))
+        albums.add(RecentPlayedDTO("https://i.scdn.co/image/7f587bc2606cdd9907d7452e92a2158c63fa8a6e", "Yeni Müzik Radarı"))
+        albums.add(RecentPlayedDTO("http://cms.djs.com/media/dj-images/tmpLUtNdM", "Future Music"))
+        albums.add(RecentPlayedDTO("https://i.scdn.co/image/fece8f48a6aee190dd775ceb8573e549275a44f0", "Skrillex - Would You Ever"))
+
+
+        Glide.with(this).load("https://pbs.twimg.com/media/CtcVNESWIAEYGWI.jpg").into(imgForYou)
+
+        val adviceAlbums = ArrayList<AdviceForYouDTO>()
+        adviceAlbums.add(AdviceForYouDTO("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2aa71041442859.57a62518bfab2.jpg", "Summer Party Time"))
+        adviceAlbums.add(AdviceForYouDTO("https://dancingastronaut.com/wp-content/uploads/2015/06/spotify-burn-by-tiesto.jpg", "Burn by Tiesto"))
+        adviceAlbums.add(AdviceForYouDTO("https://crank11.news/wp-content/uploads/sites/3/2017/10/f7936138d7ec4d805be588d495406f30.jpg", "Lany's New Single"))
+        adviceAlbums.add(AdviceForYouDTO("https://m.media-amazon.com/images/I/51hJnI9-rZL._AA256_.jpg", "Under the Covers by Alice Fredenham"))
+        adviceAlbums.add(AdviceForYouDTO("https://vignette.wikia.nocookie.net/rockband/images/3/30/Superunknown.png/revision/latest?cb=20120908003216", "Black Hole Sun"))
+        adviceAlbums.add(AdviceForYouDTO("https://i.scdn.co/image/5dc1d866121c0e8d7063996841c1023ea95ea0e6", "Toulouse - Original Mix, a song by Nicky Romero"))
+        val adapter = RecentRecyclerAdapter(albums)
         recycler?.adapter=adapter
+
+        val dailyAdapter = RecentRecyclerAdapter(albums)
+        dailyRecycler?.adapter = dailyAdapter
+
+        val adviceAdapter = AdviceForYouAdapter(adviceAlbums)
+        adviceRecyler?.adapter = adviceAdapter
 
         return view
     }
