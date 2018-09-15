@@ -25,7 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
                 app:expandedTitleMarginEnd="40dp"
+                app:expandedTitleMarginStart="40dp"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <TextView
@@ -70,15 +72,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:fillViewport="true"
-            android:fitsSystemWindows="true">
+            android:fillViewport="true">
 
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:paddingTop="8dp">-->
+
+            <!--<include layout="@layout/search_coordinator_bottom"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_width="match_parent" />-->
+            <!--</LinearLayout>-->
 
             <GridView
-                android:layout_marginTop="14dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginBottom="60dp"
+                android:layout_margin="14dp"
                 android:id="@+id/search_page_grid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -87,9 +95,7 @@
                 android:verticalSpacing="14dp"
                 android:gravity="center"
                 android:nestedScrollingEnabled="true" />
-
         </androidx.core.widget.NestedScrollView>
-
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
