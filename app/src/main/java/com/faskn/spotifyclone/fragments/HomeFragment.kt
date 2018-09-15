@@ -1,4 +1,4 @@
-package com.faskn.spotifyclone.Fragments
+package com.faskn.spotifyclone.fragments
 
 
 import android.os.Bundle
@@ -8,19 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.ScrollView
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.faskn.spotifyclone.Adapters.AdviceForYouAdapter
-import com.faskn.spotifyclone.Adapters.RecentRecyclerAdapter
-import com.faskn.spotifyclone.Adapters.MyPagerAdapter
-import com.faskn.spotifyclone.Data.AdviceForYouDTO
-import com.faskn.spotifyclone.Data.RecentPlayedDTO
+import com.faskn.spotifyclone.adapters.AdviceForYouAdapter
+import com.faskn.spotifyclone.adapters.RecentRecyclerAdapter
+import com.faskn.spotifyclone.data.AdviceForYouDTO
+import com.faskn.spotifyclone.data.RecentPlayedDTO
 
 import com.faskn.spotifyclone.R
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
@@ -32,13 +28,13 @@ class HomeFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
         val recycler = view.findViewById<RecyclerView>(R.id.recently_played_recycler)
         val imgForYou = view.findViewById<ImageView>(R.id.imgForYou)
-        recycler?.layoutManager = LinearLayoutManager(view.context, LinearLayout.HORIZONTAL,false)
+        recycler.layoutManager = LinearLayoutManager(view.context, LinearLayout.HORIZONTAL,false)
 
         val dailyRecycler = view.findViewById<RecyclerView>(R.id.daily_mixes_recycler)
-        dailyRecycler?.layoutManager = LinearLayoutManager(view.context, LinearLayout.HORIZONTAL, false)
+        dailyRecycler.layoutManager = LinearLayoutManager(view.context, LinearLayout.HORIZONTAL, false)
 
         val adviceRecyler = view.findViewById<RecyclerView>(R.id.advice_for_you_recycler)
-        adviceRecyler?.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
+        adviceRecyler.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
 
 
         val albums = ArrayList<RecentPlayedDTO>()
@@ -61,13 +57,13 @@ class HomeFragment : Fragment() {
         adviceAlbums.add(AdviceForYouDTO("https://vignette.wikia.nocookie.net/rockband/images/3/30/Superunknown.png/revision/latest?cb=20120908003216", "Black Hole Sun"))
         adviceAlbums.add(AdviceForYouDTO("https://i.scdn.co/image/5dc1d866121c0e8d7063996841c1023ea95ea0e6", "Toulouse - Original Mix, a song by Nicky Romero"))
         val adapter = RecentRecyclerAdapter(albums)
-        recycler?.adapter=adapter
+        recycler.adapter=adapter
 
         val dailyAdapter = RecentRecyclerAdapter(albums)
-        dailyRecycler?.adapter = dailyAdapter
+        dailyRecycler.adapter = dailyAdapter
 
         val adviceAdapter = AdviceForYouAdapter(adviceAlbums)
-        adviceRecyler?.adapter = adviceAdapter
+        adviceRecyler.adapter = adviceAdapter
 
         return view
     }

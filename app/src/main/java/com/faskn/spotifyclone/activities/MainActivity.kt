@@ -1,14 +1,11 @@
-package com.faskn.spotifyclone.Activities
+package com.faskn.spotifyclone.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.faskn.spotifyclone.Adapters.MyPagerAdapter
-import com.faskn.spotifyclone.Data.RecentPlayedDTO
+import androidx.viewpager.widget.ViewPager
+import com.faskn.spotifyclone.adapters.MyPagerAdapter
 import com.faskn.spotifyclone.R
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -19,15 +16,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val viewPager : ViewPager = findViewById(R.id.viewpager_main)
+        val tabLayout : TabLayout = findViewById(R.id.tabs_main)
+
         val fragmentAdapter = MyPagerAdapter(supportFragmentManager)
-        viewpager_main.adapter = fragmentAdapter
-        tabs_main.setupWithViewPager(viewpager_main)
+        viewPager.adapter = fragmentAdapter
+        tabLayout.setupWithViewPager(viewPager)
+
         setupIcons()
 
 
     }
 
-    fun setupIcons(){
+    private fun setupIcons(){
 
         tabs_main.getTabAt(0)!!.setIcon(R.drawable.home_btn)
         tabs_main.getTabAt(1)!!.setIcon(R.drawable.search)

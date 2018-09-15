@@ -1,4 +1,4 @@
-package com.faskn.spotifyclone.Fragments
+package com.faskn.spotifyclone.fragments
 
 
 import android.os.Bundle
@@ -9,13 +9,12 @@ import android.view.ViewGroup
 
 import com.faskn.spotifyclone.R
 
-
 class PremiumFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_premium, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_premium, container, false)
+        return view
     }
 
 

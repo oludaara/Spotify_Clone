@@ -1,12 +1,12 @@
-package com.faskn.spotifyclone.Adapters
+package com.faskn.spotifyclone.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.faskn.spotifyclone.Fragments.HomeFragment
-import com.faskn.spotifyclone.Fragments.LibraryFragment
-import com.faskn.spotifyclone.Fragments.PremiumFragment
-import com.faskn.spotifyclone.Fragments.SearchFragment
+import com.faskn.spotifyclone.fragments.HomeFragment
+import com.faskn.spotifyclone.fragments.LibraryFragment
+import com.faskn.spotifyclone.fragments.PremiumFragment
+import com.faskn.spotifyclone.fragments.SearchFragment
 
 class MyPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
     override fun getItem(position: Int): Fragment {
@@ -21,8 +21,12 @@ class MyPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
             2 -> {
                 LibraryFragment()
             }
+
+            3 -> {
+                PremiumFragment()
+            }
             else -> {
-                return PremiumFragment()
+                return Fragment()
             }
         }
     }
@@ -33,11 +37,12 @@ class MyPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
 
     override fun getPageTitle(position: Int): CharSequence {
         return when(position){
-            0 -> "Anasayfa"
-            1 -> "Ara"
-            2 -> "Kitaplığın"
+            0 -> "ANASAYFA"
+            1 -> "ARA"
+            2 -> "KİTAPLIĞIN"
+            3 -> "PREMİUM"
             else -> {
-                return "Premium" }
+                return "" }
         }
 
     }
