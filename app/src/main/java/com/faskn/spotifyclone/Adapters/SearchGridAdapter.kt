@@ -8,9 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.faskn.spotifyclone.data.CategoryDTO
 import com.faskn.spotifyclone.R
-import java.util.ArrayList
+import com.faskn.spotifyclone.data.CategoryDTO
+import java.util.*
 
 class SearchGridAdapter(val context: Context, val categoryList: ArrayList<CategoryDTO>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
