@@ -2,15 +2,14 @@ package com.faskn.spotifyclone.fragments
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import androidx.fragment.app.Fragment
+import com.faskn.spotifyclone.R
 import com.faskn.spotifyclone.adapters.SearchGridAdapter
 import com.faskn.spotifyclone.data.CategoryDTO
-
-import com.faskn.spotifyclone.R
 
 
 class SearchFragment : Fragment() {
