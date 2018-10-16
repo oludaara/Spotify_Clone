@@ -2,21 +2,20 @@ package com.faskn.spotifyclone.fragments
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.faskn.spotifyclone.R
 import com.faskn.spotifyclone.adapters.AdviceForYouAdapter
 import com.faskn.spotifyclone.adapters.RecentRecyclerAdapter
 import com.faskn.spotifyclone.data.AdviceForYouDTO
 import com.faskn.spotifyclone.data.RecentPlayedDTO
-
-import com.faskn.spotifyclone.R
 
 class HomeFragment : Fragment() {
 
@@ -33,8 +32,8 @@ class HomeFragment : Fragment() {
         val dailyRecycler = view.findViewById<RecyclerView>(R.id.daily_mixes_recycler)
         dailyRecycler.layoutManager = LinearLayoutManager(view.context, LinearLayout.HORIZONTAL, false)
 
-        val adviceRecyler = view.findViewById<RecyclerView>(R.id.advice_for_you_recycler)
-        adviceRecyler.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
+        val adviceRecycler = view.findViewById<RecyclerView>(R.id.advice_for_you_recycler)
+        adviceRecycler.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
 
 
         val albums = ArrayList<RecentPlayedDTO>()
@@ -63,7 +62,9 @@ class HomeFragment : Fragment() {
         dailyRecycler.adapter = dailyAdapter
 
         val adviceAdapter = AdviceForYouAdapter(adviceAlbums)
-        adviceRecyler.adapter = adviceAdapter
+        adviceRecycler.adapter = adviceAdapter
+
+        adviceRecycler.isNestedScrollingEnabled = false
 
         return view
     }
